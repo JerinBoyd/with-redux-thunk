@@ -1,11 +1,11 @@
-import { createStore } from 'redux'
-import githubReducer from './github';
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import githubReducer from "./github";
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(githubReducer, composeEnhancers(
+    applyMiddleware(thunk)));
 
 
-const store = createStore(
-    githubReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
 
-
-export default store
+export default store;
